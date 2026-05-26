@@ -4,10 +4,11 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Iterator
 
-# WhatsApp iOS export format, e.g. "[19/07/17, 9:07:11 PM] Sid: hi"
+# WhatsApp iOS export format, e.g. "[19/07/17, 9:07:11 PM] Sid: hi"
+# The narrow no-break space (U+202F) appears between time and AM/PM in iOS exports
 HEAD = re.compile(
     r"^‎?\[(\d{1,2})/(\d{1,2})/(\d{2,4}), "
-    r"(\d{1,2}):(\d{2})(?::(\d{2}))? ?([AP]M)?\] "
+    r"(\d{1,2}):(\d{2})(?::(\d{2}))?[  ]?([AP]M)?\] "
     r"([^:]+): ?(.*)$"
 )
 
