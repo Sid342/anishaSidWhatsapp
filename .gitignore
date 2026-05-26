@@ -1,0 +1,39 @@
+# Raw inputs and intermediates
+data/
+cache/
+
+# Env + secrets
+.env
+.env.local
+.env.*.local
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/
+*.egg-info/
+
+# Pipeline outputs that should not be committed
+pipeline/output/raw/
+*.parquet
+*.duckdb
+
+# Cloudflare
+.wrangler/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
