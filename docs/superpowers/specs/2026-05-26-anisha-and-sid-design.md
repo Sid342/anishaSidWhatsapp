@@ -37,12 +37,12 @@ A private, password-gated website that turns nine years of WhatsApp chat (2017-0
 
 | Input | Status |
 |---|---|
-| `_chat.txt` WhatsApp export | Available at `/Users/sid/Downloads/_chat.txt` |
-| Original WhatsApp `.zip` with media files | **Pending** — needed for photos |
-| Exact proposal date in January 2026 | **Pending** |
-| ~8 chapter cover photos | Will be picked after auto-detect |
-| Site password (shared with Anisha) | **Pending** |
-| Custom domain (optional) | Default to `*.pages.dev` if none |
+| `_chat.txt` WhatsApp export | Provided: `/Users/sid/Downloads/_chat.txt` (25 MB, 482k lines) |
+| Original WhatsApp `.zip` with media files | **Pending** — Phase 5 (media pipeline) blocked until provided; chapters render text-only until then |
+| Exact proposal date in January 2026 | **25 January 2026** (user-pinned chapter boundary) |
+| ~8 chapter cover photos | Deferred — picked after auto-detect + media `.zip` arrival |
+| Site password (shared with Anisha) | Deferred — Worker secret set at Phase 7 deploy time |
+| Custom domain (optional) | Default to `*.pages.dev` (no custom domain) |
 
 ## 4. Architecture
 
