@@ -1,0 +1,9 @@
+---
+interface Props { date: string; sender: "Sid" | "Anisha"; }
+const { date, sender } = Astro.props;
+---
+<figure class="bg-paper-50 text-ink-900 my-8 px-6 py-5 rounded-sm shadow-paper relative">
+  <figcaption class="font-mono text-[11px] opacity-60 mb-2">{date}</figcaption>
+  <blockquote class="font-serif text-lg leading-snug"><slot /></blockquote>
+  <div class="font-hand text-right mt-3 text-base">— {sender}</div>
+</figure>

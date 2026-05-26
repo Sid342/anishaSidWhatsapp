@@ -1,0 +1,30 @@
+---
+import "../styles/globals.css";
+interface Props { title: string; }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-dvh bg-midnight-950 text-paper-50">
+    <header class="px-6 md:px-12 py-6 flex justify-between items-baseline">
+      <a href="/book" class="font-serif text-xl tracking-wide text-gold-400">Anisha &amp; Sid</a>
+      <nav class="text-sm font-mono opacity-70 flex gap-5">
+        <a href="/search">search</a>
+        <a href="/stats">stats</a>
+        <a href="/firsts">firsts</a>
+        <a href="/archive">archive</a>
+      </nav>
+    </header>
+    <div class="rule-gold mx-6 md:mx-12"></div>
+    <main class="px-6 md:px-12 py-10 max-w-3xl mx-auto"><slot /></main>
+    <footer class="px-6 md:px-12 py-10 text-center font-mono text-xs opacity-50">
+      for her, with everything
+    </footer>
+  </body>
+</html>
