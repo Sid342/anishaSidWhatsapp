@@ -2,6 +2,10 @@
 data/
 cache/
 
+# But allow generated site data JSON (pipeline outputs for the Astro site)
+!site/src/data/
+!site/src/data/*.json
+
 # Env + secrets
 .env
 .env.local
