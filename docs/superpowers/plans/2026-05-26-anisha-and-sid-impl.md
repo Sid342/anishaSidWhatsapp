@@ -53,7 +53,7 @@ Goal: a working Astro app with the dark luxe + warm paper theme, mock chapters w
     "@astrojs/check": "^0.9.0",
     "@astrojs/mdx": "^4.0.0",
     "@astrojs/react": "^4.0.0",
-    "@astrojs/tailwind": "^6.0.0",
+    "@tailwindcss/vite": "^4.0.0",
     "@observablehq/plot": "^0.6.16",
     "astro": "^5.0.0",
     "d3": "^7.9.0",
@@ -72,13 +72,16 @@ Goal: a working Astro app with the dark luxe + warm paper theme, mock chapters w
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
+import tailwind from "@tailwindcss/vite";
 
 export default defineConfig({
-  integrations: [react(), mdx(), tailwind({ applyBaseStyles: false })],
+  integrations: [react(), mdx()],
   output: "static",
   site: "https://anishasid.pages.dev",
-  vite: { build: { assetsInlineLimit: 0 } }
+  vite: {
+    plugins: [tailwind()],
+    build: { assetsInlineLimit: 0 }
+  }
 });
 ```
 
