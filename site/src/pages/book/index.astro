@@ -1,0 +1,17 @@
+---
+import BookLayout from "../../layouts/BookLayout.astro";
+import { getCollection } from "astro:content";
+const chapters = (await getCollection("chapters")).sort((a, b) => a.data.order - b.data.order);
+---
+<BookLayout title="The Book — Anisha & Sid">
+  <h2 class="font-serif text-3xl text-gold-400 mb-8">Chapters</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    {chapters.map((c) => (
+      <a href={`/book/${c.slug}`} class="block border border-gold-600/30 p-6 hover:border-gold-500 transition">
+        <div class="font-mono text-[11px] text-gold-400/70">{c.data.dateStart} → {c.data.dateEnd}</div>
+        <div class="font-serif text-2xl mt-2">{c.data.title}</div>
+        {c.data.summary && <p class="text-sm opacity-70 mt-3">{c.data.summary}</p>}
+      </a>
+    ))}
+  </div>
+</BookLayout>

@@ -1,0 +1,21 @@
+---
+import BookLayout from "../../layouts/BookLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const chapters = await getCollection("chapters");
+  return chapters.map((c) => ({ params: { slug: c.slug }, props: { chapter: c } }));
+}
+
+const { chapter } = Astro.props;
+const { Content } = await render(chapter);
+---
+<BookLayout title={chapter.data.title}>
+  <article>
+    <header class="mb-10">
+      <div class="font-mono text-[11px] text-gold-400/70">{chapter.data.dateStart} — {chapter.data.dateEnd}</div>
+      <h1 class="font-serif text-4xl md:text-5xl text-gold-400 mt-2">{chapter.data.title}</h1>
+    </header>
+    <div class="prose-content"><Content /></div>
+  </article>
+</BookLayout>
