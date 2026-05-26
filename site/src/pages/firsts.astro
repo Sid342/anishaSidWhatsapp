@@ -1,0 +1,22 @@
+---
+import BookLayout from "../layouts/BookLayout.astro";
+import firsts from "../data/firsts.json";
+---
+<BookLayout title="Firsts — Anisha & Sid">
+  <h1 class="font-serif text-4xl text-gold-400 mb-10">Firsts</h1>
+  <ul class="space-y-6">
+    {firsts.map((f: any) => (
+      <li class="border-l border-gold-600/40 pl-5">
+        <div class="font-mono text-[11px] opacity-60">{f.ts.slice(0,16)} · {f.by} said first</div>
+        <div class="font-serif text-xl mt-1">"{f.phrase}"</div>
+        <details class="mt-2 text-sm opacity-80"><summary class="cursor-pointer font-mono text-[11px] text-gold-400/70">context</summary>
+          <div class="mt-2 space-y-1">
+            {f.context.map((c: any) => (
+              <div><span class="opacity-50">{c.sender}:</span> {c.text}</div>
+            ))}
+          </div>
+        </details>
+      </li>
+    ))}
+  </ul>
+</BookLayout>
