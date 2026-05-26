@@ -1,0 +1,55 @@
+---
+import BookLayout from "../layouts/BookLayout.astro";
+import HourHeatmap from "../components/HourHeatmap.tsx";
+import stats from "../data/stats.json";
+---
+<BookLayout title="Stats — Anisha & Sid">
+  <h1 class="font-serif text-4xl text-gold-400 mb-2">By the Numbers</h1>
+  <p class="font-mono text-xs opacity-60 mb-10">{stats.per_day.first_day} → {stats.per_day.last_day} · {stats.per_day.span_days} days</p>
+
+  <section class="grid md:grid-cols-3 gap-8 mb-12 font-mono text-sm">
+    {stats.counts.by_sender.map((r: any) => (
+      <div>
+        <div class="text-gold-400 text-lg font-serif">{r.sender}</div>
+        <div>{r.msgs.toLocaleString()} messages</div>
+        <div>{r.words.toLocaleString()} words</div>
+        <div>{r.chars.toLocaleString()} characters</div>
+      </div>
+    ))}
+    <div>
+      <div class="text-gold-400 text-lg font-serif">Together</div>
+      <div>{stats.counts.total_msgs.toLocaleString()} total</div>
+      <div>{stats.per_day.avg_per_day} avg/day</div>
+      <div>Peak: {stats.per_day.peak_day.n} on {stats.per_day.peak_day.day}</div>
+      <div>Longest streak: {stats.streak.longest_streak_days} days</div>
+    </div>
+  </section>
+
+  <h2 class="font-serif text-2xl text-gold-400 mb-4">When we talk</h2>
+  <HourHeatmap grid={stats.hour_heatmap_dow_hr} client:load />
+
+  <h2 class="font-serif text-2xl text-gold-400 mt-12 mb-4">Reply speed</h2>
+  <ul class="font-mono text-sm space-y-1">
+    {Object.entries(stats.median_reply_seconds).map(([who, sec]: any) => (
+      <li>{who}: median {Math.round(sec)} s</li>
+    ))}
+  </ul>
+
+  <h2 class="font-serif text-2xl text-gold-400 mt-12 mb-4">Mentions</h2>
+  <ul class="font-mono text-sm grid grid-cols-2 md:grid-cols-3 gap-y-1">
+    {Object.entries(stats.mentions).map(([k, v]: any) => (
+      <li>{k}: {v.toLocaleString()}</li>
+    ))}
+  </ul>
+
+  <h2 class="font-serif text-2xl text-gold-400 mt-12 mb-4">Endearments</h2>
+  <ul class="font-mono text-sm">
+    {Object.entries(stats.endearments).filter(([k, v]: any) => Object.values(v).some((n: any) => n > 0))
+      .map(([k, v]: any) => (
+      <li>{k}: {Object.entries(v).map(([s, n]) => `${s} ${n}`).join(" · ")}</li>
+    ))}
+  </ul>
+
+  <h2 class="font-serif text-2xl text-gold-400 mt-12 mb-4">Longest stretched word</h2>
+  <p class="font-mono">"{stats.elongation.word}" — {stats.elongation.len} chars, by {stats.elongation.by}</p>
+</BookLayout>
